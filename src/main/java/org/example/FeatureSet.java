@@ -2,17 +2,13 @@ package org.example;
 
 public class FeatureSet {
 
-    // =========================
-    // 🧩 SHORT TERM
-    // =========================
+    // ===== short term =====
     public double return1d;
     public double return5d;
     public double rsiChange5d;
     public double volumeSpike;
 
-    // =========================
-    // 🧩 MEDIUM TERM
-    // =========================
+    // ===== medium term =====
     public double rsi14;
     public double ma20;
     public double ma50;
@@ -21,15 +17,13 @@ public class FeatureSet {
     public double ma20Slope;
     public double volatility20;
 
-    // =========================
-    // 🧩 LONG TERM
-    // =========================
+    // ===== long term =====
     public double return100d;
     public double maxDrawdown100d;
     public double pctAboveMA50;
     public double volatility100;
 
-
+    // ===== market-wide context (SPY / VIX) =====
     public double vixRegime;
     public double spyAboveMA50;
     public double spyReturn5d;

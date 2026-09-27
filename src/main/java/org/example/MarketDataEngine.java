@@ -7,6 +7,8 @@ import java.util.*;
 
 public class MarketDataEngine {
 
+    private static final String RAW_DATA_DIR = "data/raw/";
+
     private static List<StockData> spyData;
     private static List<StockData> vixData;
 
@@ -25,7 +27,7 @@ public class MarketDataEngine {
 
         List<StockData> data = new ArrayList<>();
 
-        String path = "C:\\NasdaqDownloads\\" + name + ".csv";
+        String path = RAW_DATA_DIR + name + ".csv";
         BufferedReader br = new BufferedReader(new FileReader(path));
 
         String header = br.readLine();
@@ -72,7 +74,7 @@ public class MarketDataEngine {
 
         br.close();
 
-        // Ensure oldest → newest
+        // Ensure oldest -> newest
         Collections.reverse(data);
 
         return data;
@@ -113,7 +115,7 @@ public class MarketDataEngine {
         f.put("vixLevel", vixClose);
         f.put("vixReturn5d", FeatureCalculator.returnOver(vixData, vixIndex, 5));
 
-        // 🔥 BONUS: VIX regime
+        // Bucket the VIX level into a coarse volatility regime
         double regime;
         if (vixClose < 15) regime = 0;
         else if (vixClose < 25) regime = 1;

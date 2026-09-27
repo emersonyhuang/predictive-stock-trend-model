@@ -23,9 +23,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class NasdaqSmartDownloader {
 
     public static void main(String[] args) {
-        String csvInput = "skipped_stocks.csv";
-        String downloadDir = "C:\\NasdaqDownloads\\";
-        String masterFile = "C:\\NasdaqDownloads\\FINAL_COMBINED_DATA.csv";
+        String csvInput = "data/raw/skipped_stocks.csv";
+        String downloadDir = "data/raw/";
+        String masterFile = "data/raw/FINAL_COMBINED_DATA.csv";
 
         new File(downloadDir).mkdirs();
 

@@ -22,7 +22,7 @@ public class StockScreener {
         Scanner scanner = new Scanner(System.in);
 
         // Name of the file where data will be saved
-        String csvFileName = "scraped_stocks.csv";
+        String csvFileName = "data/scraped_stocks.csv";
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(csvFileName, true))) {
             // Write CSV Header if file is new (optional)

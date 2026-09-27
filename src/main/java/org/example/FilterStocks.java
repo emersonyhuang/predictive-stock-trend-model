@@ -9,13 +9,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * StockProcessor reads a CSV file, filters unique stock names, 
+ * FilterStocks reads a CSV file, filters unique stock names, 
  * tracks the last date reached, and writes a summary to a NEW CSV file.
  */
 public class FilterStocks {
     public static void main(String[] args) {
-        String inputFileName = "scraped_stocks.csv";
-        String outputFileName = "stock_summary.csv";
+        String inputFileName = "data/scraped_stocks.csv";
+        String outputFileName = "data/stock_summary.csv";
 
         Set<String> uniqueStocks = new HashSet<>();
         String lastDate = "N/A";

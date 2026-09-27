@@ -7,10 +7,12 @@ import java.time.format.*;
 
 public class CSVLoader {
 
+    private static final String RAW_DATA_DIR = "data/raw/";
+
     public static List<StockData> loadCSV(String ticker) throws Exception {
         List<StockData> data = new ArrayList<>();
 
-        String path = "C:\\NasdaqDownloads\\" + ticker + ".csv";
+        String path = RAW_DATA_DIR + ticker + ".csv";
         BufferedReader br = new BufferedReader(new FileReader(path));
 
         String line = br.readLine();
@@ -19,7 +21,7 @@ public class CSVLoader {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         while ((line = br.readLine()) != null) {
-            String[] p = line.split(","); // ✅ FIXED
+            String[] p = line.split(",");
 
             String rawDate = p[0].trim();
             LocalDate parsedDate = LocalDate.parse(rawDate, inputFormat);
@@ -36,7 +38,7 @@ public class CSVLoader {
 
         br.close();
 
-        Collections.reverse(data); // oldest → newest
+        Collections.reverse(data); // oldest -> newest
 
         return data;
     }

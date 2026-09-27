@@ -23,14 +23,12 @@ public class SignalProcessor {
 
         double close = data.get(index).close;
 
-        // =========================
-        // 🧩 SHORT TERM
-        // =========================
+        // ----- short term -----
 
         f.return1d = FeatureCalculator.returnOver(data, index, 1);
         f.return5d = FeatureCalculator.returnOver(data, index, 5);
 
-        // RSI change (simplified placeholder → upgrade later)
+        // RSI change (simplified placeholder -> upgrade later)
         double rsiNow = FeatureCalculator.rsi(data, index, 14);
         double rsiPast = FeatureCalculator.rsi(data, index - 5, 14);
         f.rsi14 = rsiNow;
@@ -40,9 +38,7 @@ public class SignalProcessor {
         double avgVol5 = FeatureCalculator.avgVolume(data, index, 5);
         f.volumeSpike = data.get(index).volume / avgVol5;
 
-        // =========================
-        // 🧩 MEDIUM TERM
-        // =========================
+        // ----- medium term -----
 
         f.ma20 = FeatureCalculator.movingAverage(data, index, 20);
         f.ma50 = FeatureCalculator.movingAverage(data, index, 50);
@@ -55,9 +51,7 @@ public class SignalProcessor {
 
         f.volatility20 = FeatureCalculator.volatility(data, index, 20);
 
-        // =========================
-        // 🧩 LONG TERM
-        // =========================
+        // ----- long term -----
 
         f.return100d = FeatureCalculator.returnOver(data, index, 100);
         f.maxDrawdown100d = FeatureCalculator.maxDrawdown(data, index, 100);
@@ -88,9 +82,7 @@ public class SignalProcessor {
 
         FeatureSet features = buildFeatures(data, index);
 
-// =========================
-// 🌍 GLOBAL FEATURES (ADD THIS BLOCK)
-// =========================
+        // ----- market-wide features -----
         Map<String, Double> market = MarketDataEngine.getMarketFeatures(date);
 
         if (market == null) {
@@ -103,9 +95,7 @@ public class SignalProcessor {
         features.vixReturn5d  = market.get("vixReturn5d");
         features.vixRegime    = market.get("vixRegime");
 
-// =========================
-// 🎯 LABEL (UNCHANGED)
-// =========================
+        // ----- label: 5-day forward return -----
         double label =
                 (data.get(index + 5).close - data.get(index).close)
                         / data.get(index).close;
